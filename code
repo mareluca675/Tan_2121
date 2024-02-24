@@ -1,0 +1,49 @@
+#include <fstream>
+
+using namespace std;
+
+short fv[10];
+unsigned long long n; 
+short p;
+
+int main()
+{
+    ifstream cin("tan.in");
+    ofstream cout("tan.out");
+    
+    cin >> n;
+    
+    while(n){
+        fv[n % 10] ++;
+        n /= 10;
+    }
+    
+    if(fv[0]){
+        for(int i = 1; i <= 9; i ++){
+            if(fv[i]){
+                cout << i;
+                fv[i] --;
+                break;
+            }
+        }
+    }
+     
+    for(int i = 8; i >= 0; i -= 2){
+        if(fv[i]){
+            p = i;
+            fv[i] --;
+            break;
+        }
+    }
+    
+    for(int i = 0; i <= 9; i ++){
+        while(fv[i]){
+            cout << i;
+            fv[i] --;
+        }
+    }
+    
+    cout << p;
+
+    return 0;
+}
